@@ -6,6 +6,6 @@ public interface Attaquable{
 
     //étant donné qu'un pokemon est a une entité attaquable on la note dans les interfaces
     
-    public void takeDamage(Pokemon target, int damage);
+    public void takeDamage(PokemonAbstract target);
     
 }

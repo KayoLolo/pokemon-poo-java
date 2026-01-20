@@ -3,21 +3,25 @@ public abstract class PokemonAbstract {
     protected int pv;
     protected Statistiques stats;
     //Dans une classe Abstraite on initialise comme les autres classes
-    public PokemonAbstract(String name, int pv){
+    public PokemonAbstract(String name, int pv, Statistiques stats){
         
         this.name =name;
         this.pv =pv;
         this.stats = stats;
         
     }
-
+    
     //Tous les Pokémon peuvent perdre des PV, la mécanique est la même → concret
     //Tous les Pokémon ont des attaques différentes (eau, feu, plante…) → abstrait
 
 
-    public abstract void attack(PokemonAbstract target, int damage);
+    public abstract void attack(PokemonAbstract target);
 
-    public void takeDamage(int damage){
+    public void takeDamage(PokemonAbstract striker){
+        int damage = striker.getAttack() - this.getDefense();
+        if (damage < 1) {
+            damage = 1;
+        }
         pv -= damage;
         if(pv < 0){
             pv = 0;

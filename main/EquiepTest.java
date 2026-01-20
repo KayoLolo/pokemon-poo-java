@@ -1,7 +1,9 @@
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 
 public class EquiepTest {
 
@@ -13,6 +15,11 @@ public class EquiepTest {
     }
 
 
+    @Test
+    void shouldRenderTeam() {
+        Equipe mine = new Equipe();
+        assertEquals(0, mine.getSizeTeam());
+    }
 
     @Test
     void shouldCountSize(){

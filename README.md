@@ -22,3 +22,6 @@ Les tests unitaires sont écrits avec **JUnit 5** et couvrent :
 - La gestion des équipes
 - L’ajout et la suppression de Pokémon
 - Les règles métier principales
+
+## 📌 Auteur
+*Karl / KayoLolo*
