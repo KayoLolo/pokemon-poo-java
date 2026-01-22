@@ -37,7 +37,7 @@ public class Equipe {
             
     //     }
     // }
-
+ 
 
 
     public int getSizeTeam(){

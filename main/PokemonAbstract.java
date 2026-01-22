@@ -2,31 +2,56 @@ public abstract class PokemonAbstract {
     protected String name;
     protected int pv;
     protected Statistiques stats;
+
+    //en mettant strategy en protected on doit avoir un setter pour le modifier
+    protected AttackStrategy currentStrategy;
+
     //Dans une classe Abstraite on initialise comme les autres classes
     public PokemonAbstract(String name, int pv, Statistiques stats){
         
         this.name =name;
         this.pv =pv;
-        this.stats = stats;
-        
+        this.stats = stats;       
     }
     
     //Tous les Pokémon peuvent perdre des PV, la mécanique est la même → concret
     //Tous les Pokémon ont des attaques différentes (eau, feu, plante…) → abstrait
 
+    //Si jamaais je le mettait en parametre ici pas besoin de setter pour la strategy 
+        //Mais vu qu'il n'est pas en parametre on doit le setter
 
-    public abstract void attack(PokemonAbstract target);
 
-    public void takeDamage(PokemonAbstract striker){
-        int damage = striker.getAttack() - this.getDefense();
+    public void setAttackStrategy(AttackStrategy strategy) {
+        this.currentStrategy = strategy;
+    }    
+
+
+    public  void attack(PokemonAbstract target){
+        if (currentStrategy == null) {
+        System.out.println(this.name + " n'a pas d'attaque !");
+        return;
+        }
+
+        if (target.getPv() <= 0) {
+        System.out.println(target.name + " est déjà KO !");
+        return;
+        }
+        int damage =currentStrategy.calculateDamage(this, target);
+        target.takeDamage(damage);
+        System.out.println(this.name + " utilise " + currentStrategy.getAttackName() + " !");
+    }
+
+    public void takeDamage(int damage){
         if (damage < 1) {
-            damage = 1;
+        damage = 1;
         }
         pv -= damage;
         if(pv < 0){
             pv = 0;
         }
     }
+
+
 
     public PokemonAbstract getPokemon(PokemonAbstract a){
         return a;
